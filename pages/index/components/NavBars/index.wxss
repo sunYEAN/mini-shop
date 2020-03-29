@@ -1,0 +1,29 @@
+/* pages/index/components/NavBars/index.wxss */
+.menu{
+  display: flex;
+  padding: 30rpx 0;
+  justify-content: space-around;
+}
+.menu .item {
+  flex: 1;
+  padding: 30rpx 0;
+}
+
+.menu image {
+  width: 78rpx;
+  height: 78rpx;
+  margin: 0 auto;
+  display: block;
+  border-radius: 50%;
+  margin-bottom: 12rpx;
+  background-color: #333;
+}
+
+.menu text {
+  color: #333;
+  margin: 10rpx auto;
+  display: block;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 1;
+}

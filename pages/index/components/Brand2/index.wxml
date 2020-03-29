@@ -1,0 +1,10 @@
+<view class="brand-list">
+  <text class="title">周一周四 · 新品首发</text>
+  <view class="brands">
+    <view wx:for="{{brand}}" wx:key="{{item.id}}" class="brand-item">
+      <image src="{{item.list_pic_url}}"></image>
+      <text>{{item.name}}</text>
+      <text>￥{{item.retail_price}}</text>
+    </view>
+  </view>
+</view>

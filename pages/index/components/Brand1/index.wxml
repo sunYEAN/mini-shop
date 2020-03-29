@@ -1,0 +1,13 @@
+<!--pages/index/components/Brand/index.wxml-->
+<view class="brand-list">
+  <text class="title">品牌制造商直供</text>
+  <view class="brands">
+    <view wx:for="{{brand}}" wx:key="{{item.id}}" class="brand-item">
+      <image src="{{item.new_pic_url}}"></image>
+      <view class="mask">
+        <text>{{item.name}}</text>
+        <text>{{item.floor_price}}元起</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "search": "./components/Search/index",
+    "menu": "./components/NavBars/index",
+    "brand1": "./components/Brand1/index",
+    "brand2": "./components/Brand2/index"
+  }
+}

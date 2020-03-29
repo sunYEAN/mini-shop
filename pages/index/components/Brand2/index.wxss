@@ -1,0 +1,41 @@
+/* pages/index/components/Brand/index.wxss */
+.brand-list{
+  text-align: center;
+}
+
+.brand-list > .title {
+  color: #333;
+  display: block;
+  padding: 46rpx 0;
+  font-size: 32rpx;
+  background-color: #ffffff;
+}
+.brand-list > .brands {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.brand-list > .brands > .brand-item{
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.brand-list > .brands > .brand-item > image{
+  width: 302rpx;
+  height: 302rpx;
+  object-fit: cover;
+}
+
+
+.brand-list > .brands > .brand-item > text{
+  color: #333;
+  overflow: hidden;
+  font-size: 26rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 14rpx;
+}

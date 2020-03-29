@@ -1,0 +1,7 @@
+<!--pages/index/components/NavBars/index.wxml-->
+<view class="menu">
+  <view class="menu-item" wx:for="{{channels}}" wx:key="{{item.id}}">
+    <image src="{{item.icon_url}}"></image>
+    <text>{{item.name}}</text>
+  </view>
+</view>

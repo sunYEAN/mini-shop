@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<view class="container">
+  <search>
+    <view class="message"></view>
+  </search>
+  <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+    <swiper-item wx:for="{{banner}}" wx:key="{{item.id}}">
+        <image src="{{item.image_url}}" background-size="cover"></image>
+    </swiper-item>
+  </swiper>
+
+<!-- menu -->
+<menu channels="{{channel}}"></menu>
+
+<brand1 brand="{{brandList}}"></brand1>
+
+<brand2 brand="{{newGoodsList}}"></brand2>
+
+</view>

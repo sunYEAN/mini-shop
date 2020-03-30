@@ -1,0 +1,65 @@
+/* pages/index/components/Brand/index.wxss */
+.brands{
+  border-top: 20rpx solid #f4f4f4;
+}
+.brands >.title{
+  color: #333;
+  display: block;
+  padding: 46rpx 0;
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.lines {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+.lines-1{
+  -webkit-line-clamp: 1;
+}
+
+.lines-2 {
+  -webkit-line-clamp: 2;
+}
+.brands .brand-list {
+  display: flex;
+  box-sizing: content-box;
+}
+
+.brands .brand-list > .brand-item{
+  width: 680rpx;
+  font-size: 0;
+  margin-left: 30rpx;
+  padding-bottom: 40rpx;
+}
+
+.brands .brand-list > .brand-item:last-child{
+  padding-right: 30rpx;
+}
+
+.brands .brand-list > .brand-item >image{
+  width: 680rpx;
+  height: 387rpx;
+  margin-bottom: 40rpx;
+}
+
+.brands .brand-list > .brand-item .title{
+  color: #333;
+  font-size: 32rpx;
+}
+
+.brands .brand-list > .brand-item .title .price{
+  color: #b4282d;
+  margin-left: 20rpx;
+}
+
+.brands .brand-list > .brand-item .subtitle{
+  color: #999;
+  font-size: 26rpx;
+  margin-top: 16rpx;
+}
+
+
+

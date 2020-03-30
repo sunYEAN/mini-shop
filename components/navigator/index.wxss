@@ -1,0 +1,4 @@
+/* components/navigator/index.wxss */
+.navigator{
+  position: relative;
+}

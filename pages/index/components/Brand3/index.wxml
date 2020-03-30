@@ -1,0 +1,16 @@
+<!--pages/index/components/Brand3/index.wxml-->
+<view class="brands">
+  <text class="title">人气推荐</text>
+  <view class="brand-list">
+    <template wx:for="{{brand}}" wx:Key="{{item.id}}">
+      <view bindtap="handleItem" class="brand-item">
+        <image src="{{item.list_pic_url}}"></image>
+        <view class="info">
+          <text class="name lines lines-1">{{item.name}}</text>
+          <text class="desc lines lines-2">{{item.goods_brief}}</text>
+          <text class="price">￥{{item.retail_price}}</text>
+        </view>
+      </view>
+    </template>
+  </view>
+</view>

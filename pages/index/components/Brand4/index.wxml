@@ -1,0 +1,13 @@
+<!--pages/index/components/Brand4/index.wxml-->
+<view class="brands">
+  <text class="title">专题精选</text>
+  <scroll-view scroll-x class="scroll">
+    <view class="brand-list">
+      <view wx:for="{{brand}}" wx:key="{{item.id}}" class="brand-item">
+      <image background-size="cover" src="{{item.item_pic_url}}"></image>
+      <view class="title lines lines-1">{{item.title}}<text class="price">￥{{item.price_info}}元起</text></view>
+      <view class="subtitle lines lines-1">{{item.subtitle}}</view>
+    </view>
+    </view>
+  </scroll-view>
+</view>

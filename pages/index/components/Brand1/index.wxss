@@ -34,7 +34,7 @@
 }
 
 
-.brand-list > .brands > .brand-item > .mask{
+.brand-list > .brands > .brand-item .mask{
   top: 0;
   left: 0;
   width: 100%;
@@ -49,17 +49,17 @@
   justify-content: flex-start;
 }
 
-.brand-list > .brands > .brand-item > .mask > text:nth-of-type(1){
+.brand-list > .brands > .brand-item .mask > text:nth-of-type(1){
   font-size: 32rpx;
 }
 
 
-.brand-list > .brands > .brand-item > .mask > text:nth-of-type(2){
+.brand-list > .brands > .brand-item .mask > text:nth-of-type(2){
   color: #999;
   font-size: 26rpx;
 }
 
-.brand-list > .brands > .brand-item > image{
+.brand-list > .brands > .brand-item image{
   width: 100%;
   height: 252rpx;
   object-fit: cover;

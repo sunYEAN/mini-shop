@@ -1,11 +1,12 @@
 <!--index.wxml-->
 <view class="container">
-  <search>
+  <search goodsCount="{{count}}">
     <view class="message"></view>
   </search>
+
   <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
-    <swiper-item wx:for="{{banner}}" wx:key="{{item.id}}">
-        <image src="{{item.image_url}}" background-size="cover"></image>
+    <swiper-item class="banner-item" wx:for="{{banner}}" wx:key="{{item.id}}">
+      <image src="{{item.image_url}}" background-size="cover"></image>
     </swiper-item>
   </swiper>
 
@@ -15,5 +16,16 @@
 <brand1 brand="{{brandList}}"></brand1>
 
 <brand2 brand="{{newGoodsList}}"></brand2>
+
+<brand3 brand="{{hotGoodsList}}"></brand3>
+
+<brand4 brand="{{topicList}}"></brand4>
+
+<view class="cate-brands">
+  <view wx:for="{{categoryList}}" wx:key="{{item.id}}" class="brands">
+    <text class="title">{{item.name}}</text>
+    <brand5 brand="{{item.goodsList}}"></brand5>
+  </view>
+</view>
 
 </view>

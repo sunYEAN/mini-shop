@@ -2,8 +2,8 @@
 .container{
 }
 .container .message{
-  width: 46rpx;
-  height: 46px;
+  width: 40rpx;
+  height: 40px;
   background: url(https://source.mnnuu.cn/websources/mini-program/message.png) center no-repeat;
   margin-left: 15rpx;
   background-size: 100%;
@@ -12,8 +12,28 @@
   width: 100%;
   height: 417rpx;
 }
+.container .banner-item{
+  width: 100%;
+}
 
-.container > image{
+.container .banner-item image{
   width: 100%;
   height: 417rpx;
+}
+
+.container > .cate-brands{
+
+}
+
+
+.container > .cate-brands > .brands{
+  border-top: 30rpx solid #f4f4f4;
+}
+
+.container > .cate-brands > .brands >.title{
+  color: #333;
+  display: block;
+  padding: 46rpx 0;
+  font-size: 32rpx;
+  text-align: center;
 }

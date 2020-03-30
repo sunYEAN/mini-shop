@@ -1,1 +1,14 @@
 /**app.wxss**/
+.lines {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+.lines-1{
+  -webkit-line-clamp: 1;
+}
+
+.lines-2 {
+  -webkit-line-clamp: 2;
+}

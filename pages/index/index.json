@@ -1,8 +1,12 @@
 {
+  "navigationBarTitleText": "首页",
   "usingComponents": {
     "search": "./components/Search/index",
     "menu": "./components/NavBars/index",
     "brand1": "./components/Brand1/index",
-    "brand2": "./components/Brand2/index"
+    "brand2": "./components/Brand2/index",
+    "brand3": "./components/Brand3/index",
+    "brand4": "./components/Brand4/index",
+    "brand5": "./components/Brand5/index"
   }
 }

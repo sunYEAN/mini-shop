@@ -1,9 +1,11 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/cate/index",
+    "pages/index/index",
     "pages/cart/index",
-    "pages/profile/index"
+    "pages/profile/index",
+    "pages/category/index",
+    "pages/detail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -11,38 +13,38 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
-"tabBar": {
-  "backgroundColor": "#fafafa",
-  "borderStyle": "white",
-  "selectedColor": "#c93b2c",
-  "color": "#666",
-  "list": [
-    {
-      "pagePath": "pages/index/index",
-      "iconPath": "static/images/menu_home.png",
-      "selectedIconPath": "static/images/menu_home_pressed.png",
-      "text": "首页"
-    },
-    {
-      "pagePath": "pages/cate/index",
-      "iconPath": "static/images/menu_cate.png",
-      "selectedIconPath": "static/images/menu_cate_pressed.png",
-      "text": "分类"
-    },
-    {
-      "pagePath": "pages/cart/index",
-      "iconPath": "static/images/menu_cart.png",
-      "selectedIconPath": "static/images/menu_cart_pressed.png",
-      "text": "购物车"
-    },
-    {
-      "pagePath": "pages/profile/index",
-      "iconPath": "static/images/menu_me.png",
-      "selectedIconPath": "static/images/menu_me_pressed.png",
-      "text": "我的"
-    }
-  ]
-},
+  "tabBar": {
+    "backgroundColor": "#fafafa",
+    "borderStyle": "white",
+    "selectedColor": "#c93b2c",
+    "color": "#666",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/images/menu_home.png",
+        "selectedIconPath": "static/images/menu_home_pressed.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/cate/index",
+        "iconPath": "static/images/menu_cate.png",
+        "selectedIconPath": "static/images/menu_cate_pressed.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/cart/index",
+        "iconPath": "static/images/menu_cart.png",
+        "selectedIconPath": "static/images/menu_cart_pressed.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "iconPath": "static/images/menu_me.png",
+        "selectedIconPath": "static/images/menu_me_pressed.png",
+        "text": "我的"
+      }
+    ]
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

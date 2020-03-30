@@ -1,6 +1,12 @@
 //app.js
+import {getGoodsCount} from './services/common.js'
 App({
-  onLaunch: function () {
+  onLaunch: async function () {
+
+    const res = await getGoodsCount();
+    this.globalData.goodsCount = res.data.goodsCount;
+    console.log(this.globalData)
+
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -34,6 +40,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    goodsCount: 0,
+    userInfo: null,
   }
 })

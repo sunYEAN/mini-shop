@@ -1,2 +1,49 @@
-<!--pages/cate/index.wxml-->
-<text>pages/cate/index.wxml</text>
+<!-- cate -->
+
+<view class="catelog">
+  <search goodsCount="{{count}}"></search>
+
+  <view class="cate-wrap">
+
+    <!-- 分类nav -->
+    <scroll-view scroll-y class="cates nav">
+      <view class="cate-item {{item.id === currentCateId ? 'active' : ''}}"
+        bindtap="hanleNavTap"
+        data-cate="{{item}}"
+        wx:for="{{cateList}}" 
+        wx:key="{{item.id}}">{{item.name}}</view>
+    </scroll-view>
+
+    <!-- 当前分类的列表数据 -->
+    <scroll-view 
+      scroll-y 
+      refresher-enabled 
+      refresher-triggered="{{triggered}}" 
+      refresher-background="#f9f9f9" 
+      bindrefresherrefresh="handleRefresh" 
+      class="cates cate">
+      <view class="current">
+
+        <!-- banner -->
+        <view class="c-banner">
+          <image src="{{cates[currentCateId].banner_url}}"></image>
+          <view class="mask">{{cates[currentCateId].front_name}}</view>
+        </view>
+
+        <!-- main -->
+        <view class="c-main">
+          <text class="m-title">{{cates[currentCateId].name}}分类</text>
+
+          <view class="m-list">
+            <view class="m-item" wx:for="{{cates[currentCateId].subCategoryList}}" wx:key="{{item.key}}">
+              <image src="{{item.wap_banner_url}}"></image>
+              <text>{{item.name}}</text>
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </scroll-view>
+
+  </view>
+</view>

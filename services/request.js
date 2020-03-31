@@ -15,6 +15,7 @@ function request(url, data = {}, method = "GET") {
       success: function (res) {
         console.log(`${url} - ${JSON.stringify(data)} - success`);
         if (res.statusCode == 200) {
+          if (res.data.errno !== 0) console.error(res.data);
           resolve(res.data);
         } else {
           reject(res.errMsg);

@@ -3,13 +3,14 @@
   width: 100%;
   height: 88rpx;
   display: flex;
+  padding: 0 20rpx;
+  box-sizing: border-box;
   background: #fff;
   align-items: center;
-  padding-left: 20rpx;
 }
 
 .search .input {
-  width: 660rpx;
+  flex: 1;
   height: 56rpx;
   display: flex;
   background: #f4f4f4;

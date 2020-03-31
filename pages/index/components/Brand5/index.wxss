@@ -1,0 +1,55 @@
+/* pages/index/components/Brand/index.wxss */
+.brand-list{
+  display: flex;
+  padding: 0 20rpx;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.brand-list{
+  color: #333;
+}
+.brand-list > .title {
+  display: block;
+  padding: 46rpx 0;
+  font-size: 32rpx;
+  background-color: #ffffff;
+}
+
+
+.brand-list > .brand-item{
+  width: 345rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.brand-list > .brand-item:nth-of-type(odd){
+  margin-right: 20rpx;
+}
+
+.brand-list > .brand-item image{
+  width: 345rpx;
+  height: 345rpx;
+  object-fit: cover;
+  background-color: #f9f9f9;
+}
+
+
+.brand-list > .brand-item view{
+  width: 345rpx;
+  font-size: 26rpx;
+  margin-bottom: 14rpx;
+}
+
+.brand-list > .brand-item .name{
+  overflow: hidden;
+  margin-top: 20rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.brand-list > .brand-item .price{
+  color: #b4282d;
+}

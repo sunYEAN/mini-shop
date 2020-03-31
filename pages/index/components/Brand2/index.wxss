@@ -1,8 +1,21 @@
 /* pages/index/components/Brand/index.wxss */
 .brand-list{
   text-align: center;
+  padding-bottom: 30rpx;
+}
+.lines {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+.lines-1{
+  -webkit-line-clamp: 1;
 }
 
+.lines-2 {
+  -webkit-line-clamp: 2;
+}
 .brand-list > .title {
   color: #333;
   display: block;
@@ -24,18 +37,22 @@
   justify-content: center;
 }
 
-.brand-list > .brands > .brand-item > image{
+.brand-list > .brands > .brand-item  image{
   width: 302rpx;
   height: 302rpx;
   object-fit: cover;
 }
 
 
-.brand-list > .brands > .brand-item > text{
+.brand-list > .brands > .brand-item  text{
   color: #333;
   overflow: hidden;
   font-size: 26rpx;
   white-space: nowrap;
   text-overflow: ellipsis;
   margin-bottom: 14rpx;
+}
+
+.brand-list > .brands > .brand-item  .price{
+  color: #b4282d;
 }

@@ -1,2 +1,38 @@
 <!--pages/category/index.wxml-->
-<text>pages/category/index.wxml</text>
+<view class="category">
+  <scroll-view 
+    scroll-x
+    id="nav"
+    class="nav-category" 
+    scroll-with-animation="true" 
+    scroll-left="{{position}}">
+    <view class="nav-item" 
+      wx:for="{{brotherCategories}}" 
+      wx:key="{{item.id}}">
+      <view class="text {{index === currentIndex ? 'active' : ''}}" 
+        bindtap="handleNavTap"
+        data-item="{{item}}" 
+        data-index="{{index}}">
+        {{item.name}}
+      </view>
+    </view>
+  </scroll-view>
+
+  <swiper current="{{currentIndex}}" bindchange="handlSwiperChange" class="swiper">
+    <swiper-item wx:for="{{brotherCategories}}" wx:key="{{item.id}}">
+      <scroll-view
+        class="scroll"
+        data-current="{{index}}"
+        bindscrolltolower="handleLoadMore"
+        scroll-y>
+        <view class="good-list">
+          <view class="good-item" wx:for="{{categoriesData[index].data}}" wx:key="{{item.id}}">
+            <image src="{{item.list_pic_url}}"></image>
+            <view class="lines lines-1">{{item.name}}</view>
+            <view class="red">￥{{item.retail_price}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view> 

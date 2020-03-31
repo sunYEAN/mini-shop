@@ -39,7 +39,7 @@
   padding-right: 30rpx;
 }
 
-.brands .brand-list > .brand-item >image{
+.brands .brand-list > .brand-item image{
   width: 680rpx;
   height: 387rpx;
   margin-bottom: 40rpx;

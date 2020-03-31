@@ -1,66 +1,188 @@
 // pages/category/index.js
+import { getCategories, getCategoryData } from "../../services/detail.js";
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    position: 0, // 位置
+    currentIndex: 0, // 当前页面索引
+    categoriesData: [{}], // 所有类目的数据构成的数组
+    brotherCategories: [],  // 所有的类目构成的数组
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const {id} = options;
+    id && this.initialData(id);
+  },
 
+  onReady () {
+    this.__scroll = {
+      width: 0,
+      length: 0,
+      wrapper: 0,
+    };
+    this.initialNav().then(res => {
+      const [view, Nodes] = res;
+      this.__scroll.length = Nodes.length;
+      this.__scroll.wrapper = view.width;
+      this.__scroll.width = Nodes.reduce((prev, next) => {
+        return prev + next.width;
+      }, 0);
+    })
+  },
+
+
+  /**
+   * 计算展示到中间需要滚动多少距离
+   */
+  calculateCenter(index) {
+    let { width, wrapper, length } = this.__scroll,
+      step = width / length,
+      half = wrapper / 2,
+      p = step * index;
+
+      console.log(step, half, p)
+
+    // p点居中时中心的位置 小于wrapper的中心位置
+    if ((p + step / 2) <= half) return 0;
+    else {
+      p = p - half + step / 2
+    }
+    return p;
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 初始化nav模块
    */
-  onReady: function () {
 
+  initialNav() {
+    return new Promise((resolve, reject) => {
+      const query = this.createSelectorQuery().in(this);
+      query.select('#nav').boundingClientRect();
+      query.selectAll('.nav-item').boundingClientRect();
+      query.exec(res => {
+        if (res) {
+          return resolve(res);
+        }
+        reject(res);
+      })
+    })
   },
 
   /**
-   * 生命周期函数--监听页面显示
+   * 初始化页面数据
    */
-  onShow: function () {
+  initialData (id) {
+    getCategories(id).then(res => {
+      if (res.errno === 0) {
+        let { currentCategory, brotherCategory } = res.data,
+            index = brotherCategory.findIndex(item => item.id === currentCategory.id);
+        
+        this.setData({
+          currentIndex: index,
+          brotherCategories: brotherCategory
+        })
 
+        this.requestCategoryData(currentCategory.id);
+      }
+    })
+  },
+
+  handleLoadMore (e) {
+    const {dataset: {current}} = e.target;
+    const id = this.data.brotherCategories[current].id;
+    this.requestCategoryData(id, 'more');
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
+   * event handler nav change
    */
-  onHide: function () {
+  handleNavTap (e) {
+    this.__navChanged = true; // nav改变
 
+    const {dataset: {item, index}} = e.target;
+
+    this.scrollTo(index);
+  },
+  
+  /**
+   * method sroll to position
+   */
+  scrollTo(index) {
+    const position = this.calculateCenter(index);
+
+    // 设置下一个为当前索引
+    this.setData({
+      position,
+      currentIndex: index,
+    })
+
+    console.log(index)
+
+    const { currentIndex, brotherCategories } = this.data;
+    const currentCategory = brotherCategories[index];
+    this.requestCategoryData(currentCategory.id);
   },
 
   /**
-   * 生命周期函数--监听页面卸载
+   * event handler swiper change
    */
-  onUnload: function () {
-
+  handlSwiperChange (e) {
+    console.log('cahnge')
+    const { current } = e.detail;
+    const { brotherCategories } = this.data;
+    const item = brotherCategories[current];
+    !this.__navChanged && this.handleNavTap({
+      target: {
+        dataset: {
+          item, index: current
+        }
+      }
+    });
+    this.__navChanged = false;
   },
 
   /**
-   * 页面相关事件处理函数--监听用户下拉动作
+   * 请求当前分类的数据
    */
-  onPullDownRefresh: function () {
+  requestCategoryData (id, more = false) {
+    let { categoriesData, currentIndex } = this.data,
+        currentCategoryData = categoriesData[currentIndex] || {};
 
-  },
+    if (!id) return console.error('请传入类别ID');
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
+    // 不是加载更多，已经有数据 return
+    if (!more && currentCategoryData.page) return;
 
-  },
+  
+    let page = currentCategoryData.page || 1;
+    let list = currentCategoryData.data || [];
+    let isEnd = currentCategoryData.isEnd || false;
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+    if (isEnd) return;
 
+    if (more) {
+      page++;
+    }
+
+    return getCategoryData({
+      id: id,
+      page: page,
+    }).then(res => {
+      const {count, pageSize, data} = res.data;
+      categoriesData[currentIndex] = {
+        page,
+        data: list.concat(data),
+        isEnd: page * pageSize >= count  
+      }
+      this.setData({
+        categoriesData: categoriesData
+      })
+    });
   }
 })

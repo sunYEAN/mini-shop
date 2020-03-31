@@ -30,7 +30,7 @@
   margin-right: 20rpx;
 }
 
-.brand-list > .brand-item > image{
+.brand-list > .brand-item image{
   width: 345rpx;
   height: 345rpx;
   object-fit: cover;
@@ -38,18 +38,18 @@
 }
 
 
-.brand-list > .brand-item > view{
+.brand-list > .brand-item view{
   width: 345rpx;
   font-size: 26rpx;
   margin-bottom: 14rpx;
 }
 
-.brand-list > .brand-item > .name{
+.brand-list > .brand-item .name{
   overflow: hidden;
   margin-top: 20rpx;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.brand-list > .brand-item > .price{
+.brand-list > .brand-item .price{
   color: #b4282d;
 }

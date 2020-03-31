@@ -25,11 +25,16 @@
   text-align: center;
 }
 
+.link{
+  width:100%;
+  display:flex;
+  align-items:center;
+}
+
 .brands >.brand-list > .brand-item {
   width: 100%;
   display: flex;
   overflow: hidden;
-  align-items: center;
   border-top: 1px solid #efefef;
 }
 

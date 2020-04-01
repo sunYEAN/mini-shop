@@ -62,7 +62,7 @@
 }
 
 .nomore{
-  color: #aaa;
+  color: #bcbcbc;
   padding: 30rpx;
   font-size: 28rpx;
   text-align: center;

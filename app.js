@@ -1,8 +1,9 @@
 //app.js
 import {getGoodsCount} from './services/common.js'
+import './compiler/store.js';
+
 App({
   onLaunch: async function () {
-
     const res = await getGoodsCount();
     this.globalData.goodsCount = res.data.goodsCount;
     console.log(this.globalData)

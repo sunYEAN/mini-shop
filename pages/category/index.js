@@ -8,33 +8,51 @@ Page({
   data: {
     position: 0, // 位置
     currentIndex: 0, // 当前页面索引
-    categoriesData: [], // 所有类目的数据构成的数组
+    categoriesData: [{}], // 所有类目的数据构成的数组
     brotherCategories: [],  // 所有的类目构成的数组
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 生命周期函数--监听页面加载完成
    */
-  onLoad: function (options) {
-    const {id} = options;
-    id && this.initialData(id);
-  },
-
-  onReady () {
+  async onReady () {
     this.__scroll = {
-      width: 0,
+      widths: [],
       length: 0,
       wrapper: 0,
     };
+
+    const {id} = this.options;
+    if (!id) return console.warn('请传入categoryId');
+
+    // 请求分类列表
+    const { current, parentCategory, currentCategory } = await this.initialCategories(id);
+
+    // 设置头部标题为当前父级分类名称
+    wx.setNavigationBarTitle({
+      title: parentCategory.name || '' + "分类",
+    })
+
+    // 请求当前类别id下的列表数据
+    await this.requestCategoryData(id);
+
+    // 异步去获取query
     setTimeout(async () => {
-      const res = await this.initialNav();
+      const res = await this.initialNav()
       const [view, Nodes] = res;
+      this.__scroll.widths = Nodes.map(item => item.width);
       this.__scroll.length = Nodes.length;
       this.__scroll.wrapper = view.width;
-      this.__scroll.width = Nodes.reduce((prev, next) => {
-        return prev + next.width;
-      }, 0);
-    }, 16)
+
+      // 头部导航栏滚动到指定的index的位置
+      this.handleNavTap({
+        target: {
+          dataset: {
+            index: current
+          }
+        }
+      });
+    }, 16);
   },
 
 
@@ -42,10 +60,10 @@ Page({
    * 计算展示到中间需要滚动多少距离
    */
   calculateCenter(index) {
-    let { width, wrapper, length } = this.__scroll,
-      step = width / length,
+    let { widths, wrapper, length } = this.__scroll,
+      step = widths[index],
       half = wrapper / 2,
-      p = step * index;
+      p = widths.slice(0, index).reduce((prev, next) => prev + next, 0);
 
     // p点居中时中心的位置 小于wrapper的中心位置
     if ((p + step / 2) <= half) return 0;
@@ -61,7 +79,7 @@ Page({
 
   initialNav() {
     return new Promise((resolve, reject) => {
-      const query = this.createSelectorQuery();
+      const query = this.createSelectorQuery().in(this);
       query.select('#nav').boundingClientRect();
       query.selectAll('.nav-item').boundingClientRect();
       query.exec(res => {
@@ -76,18 +94,19 @@ Page({
   /**
    * 初始化页面数据
    */
-  initialData (id) {
-    getCategories(id).then(res => {
+  initialCategories (id) {
+    return getCategories(id).then(res => {
       if (res.errno === 0) {
         let { currentCategory, brotherCategory } = res.data,
             index = brotherCategory.findIndex(item => item.id === currentCategory.id);
-        
         this.setData({
           currentIndex: index,
           brotherCategories: brotherCategory
         })
-
-        this.requestCategoryData(currentCategory.id);
+        return {
+          ...res.data,
+          current: index
+        };
       }
     })
   },
@@ -101,18 +120,20 @@ Page({
   /**
    * event handler nav change
    */
-  handleNavTap (e) {
+  async handleNavTap (e) {
     this.__navChanged = true; // nav改变
 
-    const {dataset: {item, index}} = e.target;
+    const {dataset: {index}} = e.target;
 
-    this.scrollTo(index);
+    await this.scrollTo(index);
+
+    this.__navChanged = false;
   },
   
   /**
    * method sroll to position
    */
-  scrollTo(index) {
+  async scrollTo(index) {
     const position = this.calculateCenter(index);
 
     // 设置下一个为当前索引
@@ -123,20 +144,20 @@ Page({
 
     const { currentIndex, brotherCategories } = this.data;
     const currentCategory = brotherCategories[index];
-    this.requestCategoryData(currentCategory.id);
+    await this.requestCategoryData(currentCategory.id);
   },
 
   /**
    * event handler swiper change
    */
   handlSwiperChange (e) {
+    console.log('cahnge')
     const { current } = e.detail;
     const { brotherCategories } = this.data;
-    const item = brotherCategories[current];
     !this.__navChanged && this.handleNavTap({
       target: {
         dataset: {
-          item, index: current
+          index: current
         }
       }
     });
@@ -147,7 +168,6 @@ Page({
    * 请求当前分类的数据
    */
   requestCategoryData (id, more = false) {
-    if (this.__loading) return;
     let { categoriesData, currentIndex } = this.data,
         currentCategoryData = categoriesData[currentIndex] || {};
 
@@ -167,6 +187,7 @@ Page({
       page++;
     }
 
+    if (this.__loading) return;
     this.__loading = true;
     return getCategoryData({
       id: id,
@@ -176,12 +197,13 @@ Page({
       categoriesData[currentIndex] = {
         page,
         data: list.concat(data),
-        isEnd: page * pageSize >= count,
+        isEnd: page * pageSize >= count  
       }
-      this.__loading = false;
       this.setData({
         categoriesData: categoriesData
-      })
+      });
+      this.__loading = false;
+      return res.data;
     });
   }
 })

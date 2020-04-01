@@ -27,9 +27,11 @@
         scroll-y>
         <view class="good-list">
           <view class="good-item" wx:for="{{categoriesData[index].data}}" wx:key="{{item.id}}">
-            <image src="{{item.list_pic_url}}"></image>
-            <view class="lines lines-1">{{item.name}}</view>
-            <view class="red">￥{{item.retail_price}}</view>
+            <navigator url="{{'/pages/detail/index?id=' + item.id}}">
+              <image src="{{item.list_pic_url}}"></image>
+              <view class="lines lines-1">{{item.name}}</view>
+              <view class="red">￥{{item.retail_price}}</view>
+            </navigator>
           </view>
         </view>
 

@@ -1,2 +1,74 @@
 <!--pages/detail/index.wxml-->
-<text>pages/detail/index.wxml</text>
+<view class="good-detail">
+  <swiper
+    class="banner"
+    indicator-dots circular autoplay
+    interval="3000"
+    duration="1000">
+    <swiper-item wx:for="{{gallery}}" wx:key="{{item.id}}">
+      <image background-size="cover" src="{{item.img_url}}"></image>
+    </swiper-item>
+  </swiper>
+
+  <view class="price-detail">
+    <text class="price red">{{info.retail_price}}</text>
+    <text class="sale-number">已售{{info.sell_volume}}件</text>
+    <text class="promotion">{{info.promotion_desc}}</text>
+  </view>
+
+  <view class="info">
+    <text class="lines lines-2">{{info.name}}</text>
+    <text class="desc lines lines-2">{{info.goods_brief}}</text>
+  </view>
+
+  
+  <view class="policy mt">
+    <label>已选</label>
+    <view class="item">{{0}}件</view>
+  </view>
+
+  <view class="policy">
+    <label>地址</label>
+    <view class="item">请选择</view>
+  </view>
+
+  <view class="policy">
+    <label>服务</label>
+    <view class="item dot">30天无忧退货</view>
+    <view class="item dot">48小时快速退款</view>
+    <view class="item dot">满88元免邮费</view>
+  </view>
+
+  <view class="params mt">
+    <label class="title t-line">商品参数</label>
+    <view class="item" wx:for="{{attribute}}" wx:key="{{item.id}}">
+      <label>{{item.name}}</label>
+      <text>{{item.value}}</text>
+    </view>
+  </view>
+
+
+
+  <view class="detail">
+    <import src="../../libs/wxParse/wxParse.wxml" />
+    <template is="wxParse" data="{{wxParseData:goodsDetail.nodes}}" />
+  </view>
+
+  <view class="params mt">
+    <label class="title t-line">常见问题</label>
+    <view class="issue" wx:for="{{issue}}" wx:key="{{item.id}}">
+      <label>{{item.question}}</label>
+      <text>{{item.answer}}</text>
+    </view>
+  </view>
+
+
+
+  <view class="action">
+    <view class="item a-collect"/>
+    <view class="item a-cart"/>
+    <view class="item a-s"/>
+    <view class="a buy">立即购买</view>
+    <view class="a add">加入购物车</view>
+  </view>
+</view>

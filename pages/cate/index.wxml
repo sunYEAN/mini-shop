@@ -35,10 +35,14 @@
           <text class="m-title">{{cates[currentCateId].name}}分类</text>
 
           <view class="m-list">
-            <view class="m-item" wx:for="{{cates[currentCateId].subCategoryList}}" wx:key="{{item.key}}">
+            <navigator
+              wx:for="{{cates[currentCateId].subCategoryList}}"
+              wx:key="{{item.key}}"
+              url="{{'/pages/category/index?id=' + item.id}}"
+              class="m-item">
               <image src="{{item.wap_banner_url}}"></image>
               <text>{{item.name}}</text>
-            </view>
+            </navigator>
           </view>
         </view>
 

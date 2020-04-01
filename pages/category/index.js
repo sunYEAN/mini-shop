@@ -8,7 +8,7 @@ Page({
   data: {
     position: 0, // 位置
     currentIndex: 0, // 当前页面索引
-    categoriesData: [{}], // 所有类目的数据构成的数组
+    categoriesData: [], // 所有类目的数据构成的数组
     brotherCategories: [],  // 所有的类目构成的数组
   },
 
@@ -26,14 +26,15 @@ Page({
       length: 0,
       wrapper: 0,
     };
-    this.initialNav().then(res => {
+    setTimeout(async () => {
+      const res = await this.initialNav();
       const [view, Nodes] = res;
       this.__scroll.length = Nodes.length;
       this.__scroll.wrapper = view.width;
       this.__scroll.width = Nodes.reduce((prev, next) => {
         return prev + next.width;
       }, 0);
-    })
+    }, 16)
   },
 
 
@@ -45,8 +46,6 @@ Page({
       step = width / length,
       half = wrapper / 2,
       p = step * index;
-
-      console.log(step, half, p)
 
     // p点居中时中心的位置 小于wrapper的中心位置
     if ((p + step / 2) <= half) return 0;
@@ -62,7 +61,7 @@ Page({
 
   initialNav() {
     return new Promise((resolve, reject) => {
-      const query = this.createSelectorQuery().in(this);
+      const query = this.createSelectorQuery();
       query.select('#nav').boundingClientRect();
       query.selectAll('.nav-item').boundingClientRect();
       query.exec(res => {
@@ -122,8 +121,6 @@ Page({
       currentIndex: index,
     })
 
-    console.log(index)
-
     const { currentIndex, brotherCategories } = this.data;
     const currentCategory = brotherCategories[index];
     this.requestCategoryData(currentCategory.id);
@@ -133,7 +130,6 @@ Page({
    * event handler swiper change
    */
   handlSwiperChange (e) {
-    console.log('cahnge')
     const { current } = e.detail;
     const { brotherCategories } = this.data;
     const item = brotherCategories[current];
@@ -151,6 +147,7 @@ Page({
    * 请求当前分类的数据
    */
   requestCategoryData (id, more = false) {
+    if (this.__loading) return;
     let { categoriesData, currentIndex } = this.data,
         currentCategoryData = categoriesData[currentIndex] || {};
 
@@ -170,6 +167,7 @@ Page({
       page++;
     }
 
+    this.__loading = true;
     return getCategoryData({
       id: id,
       page: page,
@@ -178,8 +176,9 @@ Page({
       categoriesData[currentIndex] = {
         page,
         data: list.concat(data),
-        isEnd: page * pageSize >= count  
+        isEnd: page * pageSize >= count,
       }
+      this.__loading = false;
       this.setData({
         categoriesData: categoriesData
       })

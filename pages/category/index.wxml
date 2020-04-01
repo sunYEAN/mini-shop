@@ -32,6 +32,8 @@
             <view class="red">￥{{item.retail_price}}</view>
           </view>
         </view>
+
+        <view class="nomore" wx:if="{{categoriesData[index].isEnd}}">历史被掏空啦~</view>
       </scroll-view>
     </swiper-item>
   </swiper>

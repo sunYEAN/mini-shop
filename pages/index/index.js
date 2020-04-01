@@ -17,7 +17,6 @@ createPage(
       channel: [],
     },
     initialData () {
-      console.log(app.globalData.goodsCount)
       getHomeData().then(res => {
         if (res.errno === 0) {
           this.setData({

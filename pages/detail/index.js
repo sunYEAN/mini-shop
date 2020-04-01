@@ -1,19 +1,35 @@
 // pages/detail/index.js
+import { getGoodDetail } from '../../services/detail.js';
+var WxParse = require('../../libs/wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    info: {},
+    issue: [],
+    brand: [],
+    gallery: [],
+    comment: [],
+    productList: [],
+    specificationList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
+    const {id} = options;
+    getGoodDetail(id).then(res => {
+      WxParse.wxParse('goodsDetail', 'html', res.data.info.goods_desc, this);
+      this.setData({
+        ...res.data
+      });
+      console.log(res.data.info)
+    })
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

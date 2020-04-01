@@ -1,1 +1,259 @@
 /* pages/detail/index.wxss */
+image{
+  display: block;
+}
+.good-detail{
+  width: 100%;
+  padding-bottom: 100rpx;
+}
+.good-detail > .banner{
+  width: 100%;
+  height: 640rpx;
+}
+
+.banner image{
+  width: 100%;
+  height: 100%;
+}
+
+.good-detail > .price-detail{
+  color: #333;
+  width: 100%;
+  padding: 26rpx 20rpx 20rpx 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.price-detail > .price{
+  font-size: 44rpx;
+}
+.price::before{
+  content: "￥";
+  font-size: 26rpx;
+}
+.sale-number{
+  color: #aaa;
+  font-size: 26rpx;
+  margin-left: 20rpx;
+}
+
+.promotion{
+  color: #999;
+  padding: 10rpx 20rpx;
+  font-size: 24rpx;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: 30rpx;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.info{
+  color: #333;
+  padding: 0 20rpx 20rpx 20rpx;
+}
+
+.info > text{
+  display: block;
+}
+
+.info > .desc{
+  color: #999;
+  font-size: 26rpx;
+  line-height: 2;
+}
+
+.policy{
+  color: #333;
+  display: flex;
+  padding: 26rpx 50rpx 26rpx 20rpx;
+  position: relative;
+  font-size: 26rpx;
+  border-top: 1rpx solid #f4f4f4;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.policy::after{
+  top: 0; right: 0;
+  width: 50rpx;
+  height: 100%;
+  content: "";
+  display: block;
+  position: absolute;
+  background: url('https://source.mnnuu.cn/websources/mini-program/arrow.png')no-repeat center center;
+  background-size: 70%;
+}
+
+.policy > label{
+  width: 80rpx;
+  color: #aaa;
+}
+.policy > .item{
+  display: flex;
+  align-items: center;
+  margin-right: 20rpx;
+}
+.policy > .dot{
+  color: #aaa;
+  font-size: 22rpx;
+}
+.policy > .dot::before{
+  width: 8rpx;
+  height: 8rpx;
+  content: "";
+  margin-right: 10rpx;
+  border-radius: 50%;
+  background-color: #b4282d;
+}
+
+.mt{
+  border-top: 20rpx solid #f4f4f4;
+}
+
+
+
+.params{
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.params > .title{
+  color: #303030;
+  font-size: 30rpx;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.params > .item {
+  color: #999;
+  padding: 16rpx 26rpx;
+  display: flex;
+  font-size: 30rpx;
+  margin-top: 1px;
+  background-color: #f3f5f7;
+}
+
+.params > .item > label {
+  color: #aaa;
+  width: 160rpx;
+  font-size: 28rpx;
+  flex-shrink: 0;
+}
+
+
+.params > .issue{
+  display: flex;
+  font-size: 28rpx;
+  margin-top: 26rpx;
+  padding-left: 20rpx;
+  flex-direction: column;
+}
+.issue > label {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+.issue > text {
+  color: #787878;
+  margin-top: 10rpx;
+}
+.issue > label::before{
+  left: -16rpx;
+  width: 8rpx;
+  height: 8rpx;
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background-color: #b4282d; 
+}
+
+.t-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.t-line::before{
+  width: 40rpx;
+  height: 1px;
+  content: "";
+  margin-right: 10rpx;
+  background-color: #aaa;
+}
+.t-line::after{
+  width: 40rpx;
+  height: 1px;
+  content: "";
+  margin-left: 10rpx;
+  background-color: #aaa;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.action{
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  bottom: 0;
+  display: flex;
+  position: fixed;
+  border-top: 1rpx solid #f4f4f4;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.action > .item{
+  width: 120rpx;
+  height: 100%;
+  border-right: 1rpx solid #f4f4f4;
+  background-size: 30%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.action > .a-collect{ 
+  background-image: url('https://source.mnnuu.cn/websources/mini-program/collect.png');
+}
+
+.action > .a-cart{
+  background-size: 32%;
+  background-image: url('https://source.mnnuu.cn/websources/mini-program/cart.png');
+}
+
+.action > .a-s{
+  background-image: url('https://source.mnnuu.cn/websources/mini-program/service.png');
+}
+
+.action > .a-active{
+  background-image: url('https://source.mnnuu.cn/websources/mini-program/collect_active.png');
+}
+
+.action .a {
+  flex: 1;
+  color: #ffffff;
+  height: 100%;
+  display: flex;
+  font-size: 28rpx;
+  align-items: center;
+  justify-content: center;
+}
+.action .add{
+  background-color: #b4282d;
+}
+
+.action .buy{
+  color: #333;
+}

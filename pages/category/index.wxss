@@ -60,3 +60,10 @@
   margin-top: 20rpx;
   text-align: center;
 }
+
+.nomore{
+  color: #bcbcbc;
+  padding: 30rpx;
+  font-size: 28rpx;
+  text-align: center;
+}

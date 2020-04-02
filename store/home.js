@@ -1,13 +1,15 @@
 import Store from '../compiler/store.js';
+import { getHomeData } from '../services/home.js'
 
 export const store = new Store({
-  count: 100
+  number: 0,
+  num: 1
 });
 
 export function addCount() {
-  let { count } = store.get();
-  count++;
+  let {number, num} = store.get();
   store.set({
-    count
+    number: ++number,
+    num: ++num
   })
-}
+};

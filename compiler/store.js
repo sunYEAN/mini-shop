@@ -19,14 +19,15 @@ class Store {
     });
 
     // 修改完store的状态后，需要通知所有用到了当前store实例的页面更新对应的数据
-    this.queue.forEach(function (callback) {
+    this.queue.forEach(function ({id, callback}) {
       callback(state);
     });
   }
 
   // 订阅当前store实例，回调函数去通过setData修改页面中的data
-  subscribe(callback) {
-    this.queue.push(callback);
+  subscribe(updateState) {
+    console.log(updateState);
+    this.queue.push(updateState);
   }
 
   // 取消订阅 （页面销毁的时候）
